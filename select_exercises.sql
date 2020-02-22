@@ -1,5 +1,9 @@
 USE codeup_test_db;
 
+describe albums;
+
+SHOW CREATE TABLE albums;
+
 SELECT name AS 'Pink FLoyd Albums'
 FROM albums
 WHERE artist = 'Pink FLoyd';
