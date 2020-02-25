@@ -30,10 +30,21 @@ WHERE gender ='F' AND emp_no IN(
     WHERE to_date= '9999-01-01'
     );
 
-# SELECT dept_name
-# FROM departments
-# WHERE dept_no IN (
-#     SELECT dept_no FROM dept_manager WHERE to_date = '9999-01-01'
-#     and emp_no IN(
-#
-#             )
+SELECT dept_name from departments
+WHERE dept_no IN (
+    SELECT dept_no from dept_manager
+    WHERE emp_no IN (
+        SELECT emp_no from employees
+        WHERE gender = 'F'
+    )
+      AND to_date > NOW()
+);
+
+SELECT first_name, last_name from employees
+WHERE emp_no IN (
+    SELECT emp_no
+    from salaries
+    WHERE salary = (
+        SELECT MAX(salary) FROM salaries
+    )
+);
